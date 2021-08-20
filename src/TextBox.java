@@ -1,5 +1,9 @@
 
-public class TextBox {
+// using inheritance by using "extends" keyword
+// every class that we declare, directly or indirectly inherits from the Object class
+// which is the built-in Object built by Java
+
+public class TextBox extends Element {
 
     // by default if we don't initialize reference types, they will get null as an
     // initial value, just like undefined in javascript
@@ -13,8 +17,22 @@ public class TextBox {
     // members from static context. BE CAREFUL !
     public static int numberOfBoxes;
 
+    @Override
+    public void render() {
+        
+        System.out.println("TextBox render");
+    }
+
     // constructor
     public TextBox(String text, String safeText) {
+
+        // with "super" keyword we can pass the arguments to the parent constructor
+        // parameters. just like "this" key word which we could access to current object
+        // and constructors.
+        super(13);
+
+        System.out.println("TextBox Constructor");
+
         this.text = text;
         this.safeText = safeText;
 
@@ -29,10 +47,21 @@ public class TextBox {
         this("", "");
     }
 
+    // @annotation is basically a label that we attach to a class member. And with
+    // this we get extra information to the java compiler, hence java compiler can
+    // check the signature of this method and make sure that this method has the
+    // same exact signature with the parent method
+
+    @Override
+    public String toString() {
+
+        return this.text;
+    }
+
     // method overloading
     public void setText() {
         this.setText("DUMMY");
-        
+        this.setSafeText("DUMMY");
     }
 
     public void setText(String text) {

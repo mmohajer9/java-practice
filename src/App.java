@@ -3,6 +3,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.coordinate.EnhancedPoint;
+import com.coordinate.Point;
+
 public class App {
 
     // default access modifier for classes, properties and methods is
@@ -13,34 +16,90 @@ public class App {
     // main method is always static so the java runtime environment can call it
     // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
-        // we can access to other methods when they are static methods
-        useOOP();
-
-        // or another way:
-        App.useOOP();
-
-        // we can also access static variables
-        System.out.println(variable);
 
         // static properties and methods are bound to class not object.
         // we can not have access to "this" in static methods becuase this refers to the
         // current object and it is not available in the static context
         // we only have access to static methods, the class itself (App) and static
-        // variables
+        // variables. we can access to other methods when they are static methods
+        // App.useObjectOriented();
+
+        // or in simpler syntax just call them.
+        useObjectOriented();
+        compareObjects();
+        polymorphism();
+
+        // we can also access static variables
+        System.out.println(variable);
 
     }
 
-    public static void useOOP() {
+    public static void polymorphism() {
+        // we know that every textboxes and checkboxes are elements
+        Element[] elements = { new TextBox(), new CheckBox() };
+
+        // foreach in java
+        for (var element : elements) {
+            element.render();
+        }
+
+    }
+
+    public static void compareObjects() {
+
+        var point1 = new Point(1, 2);
+        var point2 = new Point(1, 2);
+
+        // returns false, this compares the reference addresses of these objects
+        System.out.println(point1 == point2);
+        System.out.println(point1.equals(point2));
+
+        var point3 = new EnhancedPoint(1, 2);
+        var point4 = new EnhancedPoint(1, 2);
+
+        // returns true, because we overrided the behaviour of equals
+        // notice that in java, we don't have operator overloading
+        System.out.println(point3.equals(point4));
+        System.out.println(point3.hashCode());
+        System.out.println(point4.hashCode());
+
+    }
+
+    public static void show(Element el) {
+
+        // in upcasting, we can not have access to the child properties but the
+        // overrided methods are going to get called like toString(). In order to have
+        // access to child properties which is TextBox in here, we should perform a
+        // downcasting, an explicit casting to the child class.
+        // instanceof : an operator which checks an object whether is the instance of
+        // another object or not
+        if (el instanceof TextBox) {
+            var textBox = (TextBox) el;
+            System.out.println("using textbox downcasted : " + textBox);
+        }
+
+        System.out.println("using element upcasted : " + el);
+
+    }
+
+    public static void useObjectOriented() {
         // you can access directly to other classes which are inside of the currrent
         // package of your application
         // but if the target class in on another package and it is not private or
         // package-private, you can access
         // to it with importing the class using the notation : import
         // path.to.package.className
-        
+
         var textBox1 = new TextBox();
         textBox1.setText();
-        System.out.println(textBox1.text);
+        System.out.println(textBox1);
+
+        // because TextBox is a child of Element, it means that "TextBox is an Element".
+        // we can use every child of Element class wherever we have Element parameter
+        // and we can give its child which is TextBox as an argument.
+        // this is called upcasting. But in the method, you do not have access to the
+        // child class fields and methods.
+        show(textBox1);
 
     }
 
