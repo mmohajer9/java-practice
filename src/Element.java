@@ -21,7 +21,9 @@ public abstract class Element {
     // accesible in the current package
     boolean isHovered = false;
 
-    public void enable() {
+    // you can define final method, which prevents this method to get overriden by
+    // children instances who tries to override this method
+    public final void enable() {
         this.isEnabled = true;
     }
 

@@ -13,4 +13,10 @@ public final class CheckBox extends Element {
     public void render() {
         System.out.println("CheckBox render");
     }
+
+    // will throw an error because we are trying to override a final method
+    // @Override
+    // public void enable(){
+    // ...
+    // }
 }

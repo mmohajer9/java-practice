@@ -141,6 +141,8 @@ public class App {
         // there is a shorthand syntax which is double quotation
         String message = "this is a string";
 
+        // it is also worth mentioning that Strings in java are immutable types.
+        // every methods that modifies String Objects, actually return new Objects.
         System.out.println(message);
     }
 
