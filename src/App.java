@@ -37,7 +37,7 @@ public class App {
         // package-private, you can access
         // to it with importing the class using the notation : import
         // path.to.package.className
-
+        
         var textBox1 = new TextBox();
         textBox1.setText();
         System.out.println(textBox1.text);
