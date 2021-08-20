@@ -4,8 +4,59 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class App {
+
+    // default access modifier for classes, properties and methods is
+    // package-private
+
+    public static int variable = 123;
+
+    // main method is always static so the java runtime environment can call it
+    // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
-        App.inputScanner();
+        // we can access to other methods when they are static methods
+        useOOP();
+
+        // or another way:
+        App.useOOP();
+
+        // we can also access static variables
+        System.out.println(variable);
+
+        // static properties and methods are bound to class not object.
+        // we can not have access to "this" in static methods becuase this refers to the
+        // current object and it is not available in the static context
+        // we only have access to static methods, the class itself (App) and static
+        // variables
+
+    }
+
+    public static void useOOP() {
+        // you can access directly to other classes which are inside of the currrent
+        // package of your application
+        // but if the target class in on another package and it is not private or
+        // package-private, you can access
+        // to it with importing the class using the notation : import
+        // path.to.package.className
+
+        var textBox1 = new TextBox();
+        textBox1.setText();
+        System.out.println(textBox1.text);
+
+    }
+
+    // java features
+    public static void usingVar() {
+        // how to automatically determine the type of the variable ?
+        var number = 123;
+        var array = new int[10];
+        var string = "salam";
+
+        // it is very shorter and cleaner way to define objects of a class
+        // i mean instantiating an object from a class
+        var textBox1 = new TextBox();
+
+        System.out.println(string);
+
     }
 
     public static void primitiveTypes() {
@@ -19,13 +70,13 @@ public class App {
         boolean isAuthenticated = true;
     }
 
-    public static void refrenceTypes() {
+    public static void referenceTypes() {
 
-        // most of the refrence types are needed to be imported
+        // most of the reference types are needed to be imported
         // e.g. Date, with new operator, an instance of the Date class is created
         Date nowDate = new Date();
 
-        // String is a refrence type in the java.lang package
+        // String is a reference type in the java.lang package
         // java.lang is automatically imported in every java application
         // you don't need to import it. btw it doesn't need to use new either;
         // there is a shorthand syntax which is double quotation
@@ -101,4 +152,5 @@ public class App {
         System.out.println("You are " + input);
         scanner.close();
     }
+
 }
