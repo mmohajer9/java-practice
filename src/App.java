@@ -21,7 +21,15 @@ public class App {
     // main method is always static so the java runtime environment can call it
     // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
+        // run1();
+        // run2();
+    }
 
+    public static void run2() {
+        
+    }
+
+    public static void run1() {
         // static properties and methods are bound to class not object.
         // we can not have access to "this" in static methods becuase this refers to the
         // current object and it is not available in the static context
@@ -40,10 +48,12 @@ public class App {
         // we can also access static variables
 
         System.out.println(variable);
-
     }
 
-    private static void useInterface() {
+
+
+
+    public static void useInterface() {
         var clock = new Clock();
         var workspace = new Workspace();
         var page = new Page(clock);
