@@ -1,4 +1,4 @@
-
+package com.browser;
 // using inheritance by using "extends" keyword
 // every class that we declare, directly or indirectly inherits from the Object class
 // which is the built-in Object built by Java

@@ -1,3 +1,4 @@
+package com.browser;
 
 // we can have final classes, which means that you can not extend the class but you can instantiate it.
 // just like the opposite of abstract classes which operates on the contrary to the final classes

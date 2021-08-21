@@ -1,3 +1,4 @@
+package com.browser;
 
 // abstract class can not be instantiated, it is only for inheritance and later instances
 // its only usage is just for a common code sharing between all children instances

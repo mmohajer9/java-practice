@@ -1,14 +1,8 @@
-public class Image extends Element implements Draggable {
+package com.application.classes;
 
-    public Image(int inputArgument) {
-        super("Image");
-    }
+import com.application.interfaces.Draggable;
 
-    // from Element abstract class
-    @Override
-    public void render() {
-        System.out.println("Image render");
-    }
+public class Image implements Draggable {
 
     // from Draggable interface
     @Override

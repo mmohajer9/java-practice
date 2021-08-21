@@ -3,6 +3,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.browser.CheckBox;
+import com.browser.Element;
+import com.browser.TextBox;
 import com.coordinate.EnhancedPoint;
 import com.coordinate.Point;
 
