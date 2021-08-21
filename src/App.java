@@ -3,6 +3,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.application.Page;
+import com.application.classes.Clock;
+import com.application.classes.Workspace;
 import com.browser.CheckBox;
 import com.browser.Element;
 import com.browser.TextBox;
@@ -10,7 +13,7 @@ import com.coordinate.EnhancedPoint;
 import com.coordinate.Point;
 
 public class App {
-    
+
     // default access modifier for classes, properties and methods is
     // package-private
     public static int variable = 123;
@@ -25,23 +28,33 @@ public class App {
         // we only have access to static methods, the class itself (App) and static
         // variables. we can access to other methods when they are static methods
 
-        // App.useObjectOriented();
+        App.useObjectOriented();
 
         // or in simpler syntax just call them.
 
-        // useObjectOriented();
-        // compareObjects();
-        // polymorphism();
+        useObjectOriented();
+        compareObjects();
+        polymorphism();
         useInterface();
 
         // we can also access static variables
 
-        // System.out.println(variable);
+        System.out.println(variable);
 
     }
 
     private static void useInterface() {
-        
+        var clock = new Clock();
+        var workspace = new Workspace();
+        var page = new Page(clock);
+
+        page.display();
+
+        page.setWidget(workspace);
+
+        page.display();
+
+        page.show(clock);
     }
 
     public static void polymorphism() {
