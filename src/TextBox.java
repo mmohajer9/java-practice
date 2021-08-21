@@ -17,19 +17,13 @@ public class TextBox extends Element {
     // members from static context. BE CAREFUL !
     public static int numberOfBoxes;
 
-    @Override
-    public void render() {
-        
-        System.out.println("TextBox render");
-    }
-
     // constructor
     public TextBox(String text, String safeText) {
 
         // with "super" keyword we can pass the arguments to the parent constructor
         // parameters. just like "this" key word which we could access to current object
         // and constructors.
-        super(13);
+        super("TextBox");
 
         System.out.println("TextBox Constructor");
 
@@ -81,6 +75,12 @@ public class TextBox extends Element {
     // setter
     public void setSafeText(String safeText) {
         this.safeText = safeText;
+    }
+
+    @Override
+    public void render() {
+
+        System.out.println("TextBox render");
     }
 
 }

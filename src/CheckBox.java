@@ -4,7 +4,7 @@
 public final class CheckBox extends Element {
 
     public CheckBox() {
-        super(123);
+        super("CheckBox");
     }
 
     // we should override or implement render method because it is an abstract

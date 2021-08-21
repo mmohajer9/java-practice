@@ -3,8 +3,8 @@
 // its only usage is just for a common code sharing between all children instances
 public abstract class Element {
 
-    public Element(int inputArgument) {
-        System.out.println("Element Constructor " + inputArgument);
+    public Element(String derivedElement) {
+        System.out.println("Element Constructor of" + derivedElement);
     }
 
     // accesible everywhere
