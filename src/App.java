@@ -7,10 +7,9 @@ import com.coordinate.EnhancedPoint;
 import com.coordinate.Point;
 
 public class App {
-
+    
     // default access modifier for classes, properties and methods is
     // package-private
-
     public static int variable = 123;
 
     // main method is always static so the java runtime environment can call it
@@ -22,16 +21,24 @@ public class App {
         // current object and it is not available in the static context
         // we only have access to static methods, the class itself (App) and static
         // variables. we can access to other methods when they are static methods
+
         // App.useObjectOriented();
 
         // or in simpler syntax just call them.
-        useObjectOriented();
-        compareObjects();
-        polymorphism();
+
+        // useObjectOriented();
+        // compareObjects();
+        // polymorphism();
+        useInterface();
 
         // we can also access static variables
-        System.out.println(variable);
 
+        // System.out.println(variable);
+
+    }
+
+    private static void useInterface() {
+        
     }
 
     public static void polymorphism() {
@@ -65,7 +72,7 @@ public class App {
 
     }
 
-    public static void show(Element el) {
+    public static void downUpCasting(Element el) {
 
         // in upcasting, we can not have access to the child properties but the
         // overrided methods are going to get called like toString(). In order to have
@@ -99,7 +106,7 @@ public class App {
         // and we can give its child which is TextBox as an argument.
         // this is called upcasting. But in the method, you do not have access to the
         // child class fields and methods.
-        show(textBox1);
+        downUpCasting(textBox1);
 
     }
 

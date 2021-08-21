@@ -4,7 +4,7 @@
 public abstract class Element {
 
     public Element(String derivedElement) {
-        System.out.println("Element Constructor of" + derivedElement);
+        System.out.println("Element Constructor of " + derivedElement);
     }
 
     // accesible everywhere
