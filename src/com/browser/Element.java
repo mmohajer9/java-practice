@@ -39,6 +39,13 @@ public abstract class Element {
     // we can also have abstract method. This will force the children classes to
     // implement render methods in their definition. Otherwise it is not necessary
     // if you remove the abstract keyword from it.
+    
+    // there is another reason that we add render as an abstract method
+    // we can also add render to the children without specifying it as an abstract
+    // method in the parent class which is Element. However, if we do this when we
+    // want to use polymorphism and store the children in the Element variable and
+    // container, we can not access to the shared method like render then we should
+    // down cast the Element to the appropriate class.
     public abstract void render();
 
 }

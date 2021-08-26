@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -12,6 +15,8 @@ import com.browser.TextBox;
 import com.coordinate.EnhancedPoint;
 import com.coordinate.Point;
 
+// java.lang does not need to be imported. It is available by default globally
+
 public class App {
 
     // default access modifier for classes, properties and methods is
@@ -22,11 +27,11 @@ public class App {
     // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
         // run1();
-        // run2();
+        run2();
     }
 
     public static void run2() {
-        
+        useExceptions();
     }
 
     public static void run1() {
@@ -40,18 +45,29 @@ public class App {
 
         // or in simpler syntax just call them.
 
-        useObjectOriented();
-        compareObjects();
-        polymorphism();
-        useInterface();
+        // useObjectOriented();
+        // compareObjects();
+        // polymorphism();
+        // useInterface();
 
         // we can also access static variables
 
         System.out.println(variable);
     }
 
+    public static void useExceptions() {
 
+        try {
+            var reader = new FileReader("file.txt");
+            var value = reader.read();
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist. " + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
 
     public static void useInterface() {
         var clock = new Clock();
