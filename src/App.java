@@ -1,7 +1,10 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -9,6 +12,8 @@ import java.util.Scanner;
 import com.application.Page;
 import com.application.classes.Clock;
 import com.application.classes.Workspace;
+import com.application.exceptions.CustomException;
+import com.application.exceptions.GeneralException;
 import com.browser.CheckBox;
 import com.browser.Element;
 import com.browser.TextBox;
@@ -26,15 +31,11 @@ public class App {
     // main method is always static so the java runtime environment can call it
     // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
-        // run1();
-        run2();
+        // fundamentals();
+        exceptionHandling();
     }
 
-    public static void run2() {
-        useExceptions();
-    }
-
-    public static void run1() {
+    public static void fundamentals() {
         // static properties and methods are bound to class not object.
         // we can not have access to "this" in static methods becuase this refers to the
         // current object and it is not available in the static context
@@ -55,16 +56,127 @@ public class App {
         System.out.println(variable);
     }
 
-    public static void useExceptions() {
+    public static void exceptionHandling() {
+        // useExceptionHandler();
+        // useResourceExceptionHandler();
+        try {
+            useThrowException(50);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
-            var reader = new FileReader("file.txt");
+            useCustomException();
+        } catch (CustomException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            useExceptionChaining1();
+        } catch (GeneralException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            useExceptionChaining2();
+        } catch (GeneralException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void useExceptionChaining1() throws GeneralException {
+
+        // first way
+        // throwing "general exception" that is caused by "custom exception"
+        // the overall problem is defined by general exception but it is due to the
+        // custom exception and it is called exception chaining.
+        var customException = new CustomException();
+        var generalException = new GeneralException();
+        generalException.initCause(customException);
+        throw generalException;
+
+    }
+
+    public static void useExceptionChaining2() throws GeneralException {
+
+        // second way
+        // throwing "general exception" that is caused by "custom exception"
+        throw new GeneralException(new CustomException());
+
+    }
+
+    public static void useCustomException() throws CustomException {
+        throw new CustomException();
+    }
+
+    // the "throws Exception" is going to tell the java compiler that this method
+    // may throw and exception so it is implicitly catch the exceptions
+    // then when ever we want to use this method, we should wrap this method with
+    // try-catch block to make it work.
+    // this pattern makes the caller of this function responsible for handling this
+    // exception and it should be handled wherever is get called.
+    public static void useThrowException(int value) throws Exception {
+
+        // defensive programming - prevent the rest of our code from getting executed
+        // this style of coding is used when you are getting inputs from the user or
+        // external systems. for example you are developing a library or framework.
+        // using a lot of this validation logic of defensive programming may pollute
+        // your code so be careful about using it.
+        if (value <= 100) {
+            throw new IllegalArgumentException();
+        }
+
+    }
+
+    public static void useResourceExceptionHandler() {
+        // this is called try with resources
+        // really helpful for the problem that we faced when we want to access reader in
+        // finally and other blocks due to scope problem
+        // with this syntax, we do not need to close the reader by ourselves. java
+        // compiler will do it for us and it is very easier way to use.
+
+        // the resource in try(...) should be an object which implements AutoClosable
+        // interface and it should have the close() method in itself.
+        try (var reader = new FileReader("file.txt")) {
             var value = reader.read();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
+            System.out.println("FAILED");
+        }
+
+        // another usage of resources in try
+        try (var reader = new FileReader("file.txt"); var writer = new FileWriter("file.txt");) {
+            var value = reader.read();
+        } catch (Exception e) {
+            System.out.println("FAILED");
+        }
+
+    }
+
+    public static void useExceptionHandler() {
+        FileReader reader = null;
+        try {
+            reader = new FileReader("file.txt");
+            var value = reader.read();
+            var dateFormat = new SimpleDateFormat().parse("");
+
+            // first way to catch multiple exceptions
+        } catch (FileNotFoundException | ParseException e) {
             System.out.println("File does not exist. " + e.getMessage());
             e.printStackTrace();
+
+            // second way to catch multiple exceptions
         } catch (IOException e) {
             e.printStackTrace();
+
+            // finally block will always get executed
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
