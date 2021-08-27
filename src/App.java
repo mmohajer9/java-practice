@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,6 +15,10 @@ import com.application.classes.Clock;
 import com.application.classes.Workspace;
 import com.application.exceptions.CustomException;
 import com.application.exceptions.GeneralException;
+import com.application.generics.GenericList;
+import com.application.generics.NumericalGenericList;
+import com.application.generics.User;
+import com.application.generics.Utils;
 import com.browser.CheckBox;
 import com.browser.Element;
 import com.browser.TextBox;
@@ -32,7 +37,49 @@ public class App {
     // without creating a new object or instance as you see.
     public static void main(String[] args) throws Exception {
         // fundamentals();
-        exceptionHandling();
+        // exceptionHandling();
+        useGenerics();
+    }
+
+    public static void useGenerics() {
+
+        // we should specify the type of objects that we want to instantiate and store
+        // when creating an instance of a generic type, we can only use a reference type
+        // as a generic type argument, which is <T>. If you want to use primitive types
+        // in <T>, you could use Wrapper Class. e.g. if you want to use <int> you can
+        // use its wrapper class which is Integer.
+        var list1 = new GenericList<String>();
+        list1.add("First Item");
+
+        list1.get(0);
+
+        var list2 = new GenericList<Element>();
+
+        // another way of creating generics
+        GenericList<Integer> numbers = new GenericList<>();
+
+        // this primitive value (1) is going to get automatically wrapped inside an
+        // instance of the Integer wrapper class by Java Compiler.
+        // Integer.valueOf(1) --> wrapping the integer value to store the value
+        // correctly
+        numbers.add(1); // Boxing
+        int number = numbers.get(0); // Unboxing
+
+        System.out.println(number);
+
+        // throws an error
+        // only supports Number and its children as generic type argument
+        // var numbers2 = new NumericalGenericList<String>();
+        var user1 = new User(10);
+        var user2 = new User(20);
+
+        // using generic interfaces
+        System.out.println(user1.compareTo(user2));
+
+        // using generic methods
+        System.out.println(Utils.max(1, 3));
+        System.out.println(Utils.max(user1, user2));
+
     }
 
     public static void fundamentals() {
@@ -155,6 +202,8 @@ public class App {
     public static void useExceptionHandler() {
         FileReader reader = null;
         try {
+            // reading the file will be started at the location of Current Working Directory
+            // or CWD, the location that you invoke the java compiler to run the program
             reader = new FileReader("file.txt");
             var value = reader.read();
             var dateFormat = new SimpleDateFormat().parse("");
