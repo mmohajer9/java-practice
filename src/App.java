@@ -16,6 +16,7 @@ import com.application.classes.Workspace;
 import com.application.exceptions.CustomException;
 import com.application.exceptions.GeneralException;
 import com.application.generics.GenericList;
+import com.application.generics.Instructor;
 import com.application.generics.NumericalGenericList;
 import com.application.generics.User;
 import com.application.generics.Utils;
@@ -79,6 +80,14 @@ public class App {
         // using generic methods
         System.out.println(Utils.max(1, 3));
         System.out.println(Utils.max(user1, user2));
+
+        Utils.print(1, "value");
+
+        User user3 = new Instructor(99);
+        Utils.printUser(user3);
+
+        var instructors = new GenericList<Instructor>();
+        Utils.printUsers(instructors);
 
     }
 
