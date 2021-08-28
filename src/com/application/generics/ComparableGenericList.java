@@ -6,7 +6,7 @@ package com.application.generics;
 // get the generic type argument <T> based on a class that implements Comparable
 
 // in here, <T> is bounded type parameter. it is restricted in here
-public class ComparableGenericList<T extends Comparable & Cloneable> {
+public class ComparableGenericList<T extends Comparable<T> & Cloneable> {
     private T[] items = (T[]) new Object[10];
     private int count;
 

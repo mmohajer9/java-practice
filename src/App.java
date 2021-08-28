@@ -83,11 +83,18 @@ public class App {
 
         Utils.print(1, "value");
 
-        User user3 = new Instructor(99);
+        Instructor user3 = new Instructor(99);
         Utils.printUser(user3);
 
         var instructors = new GenericList<Instructor>();
+        var users = new GenericList<User>();
+
+        users.add(user1);
+        instructors.add(user3);
+
         Utils.printUsers(instructors);
+
+        Utils.printUsersWildCard(list1);
 
     }
 
