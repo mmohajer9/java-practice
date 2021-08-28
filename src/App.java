@@ -31,7 +31,7 @@ import com.coordinate.Point;
 public class App {
 
     // default access modifier for classes, properties and methods is
-    // package-private
+    // package-private which acts like public inside a certain package
     public static int variable = 123;
 
     // main method is always static so the java runtime environment can call it

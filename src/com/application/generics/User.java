@@ -16,6 +16,8 @@ public class User implements Comparable<User> {
         return "Points=" + points;
     }
 
+    // if we did not specify the <User> in front of Comparable, the other argument
+    // type will be in Object type not User type
     @Override
     public int compareTo(User other) {
 
