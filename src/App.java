@@ -13,6 +13,9 @@ import java.util.Scanner;
 import com.application.Page;
 import com.application.classes.Clock;
 import com.application.classes.Workspace;
+import com.application.collections.CollectionsDemo;
+import com.application.collections.IterableGenericList;
+import com.application.collections.ListsDemo;
 import com.application.exceptions.CustomException;
 import com.application.exceptions.GeneralException;
 import com.application.generics.GenericList;
@@ -39,7 +42,45 @@ public class App {
     public static void main(String[] args) throws Exception {
         // fundamentals();
         // exceptionHandling();
-        useGenerics();
+        // useGenerics();
+        // useIterables();
+        // useCollections();
+        useLists();
+    }
+
+    public static void useLists() {
+        ListsDemo.show();
+    }
+
+    public static void useCollections() {
+        CollectionsDemo.show();
+    }
+
+    public static void useIterables() {
+        var list = new IterableGenericList<String>();
+        var iterator = list.iterator();
+
+        // [a, b, c]
+        // ^
+
+        list.add("item 0");
+
+        while (iterator.hasNext()) {
+            var current = iterator.next();
+            System.out.println(current);
+        }
+
+        list.add("item 1");
+        list.add("item 2");
+        list.add("item 3");
+        list.add("item 4");
+
+        // just a syntactical sugar for iterators
+        // better and more handy approach
+        for (var item : list) {
+            System.out.println(item);
+        }
+
     }
 
     public static void useGenerics() {
